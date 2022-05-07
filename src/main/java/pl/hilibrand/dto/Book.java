@@ -51,6 +51,16 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Book() {
+    }
+
+    public Book(Long id, String author, String title, String isbn) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.isbn = isbn;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
