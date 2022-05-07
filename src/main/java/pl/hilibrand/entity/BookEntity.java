@@ -69,13 +69,22 @@ public class BookEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BookEntity)) return false;
+
         BookEntity that = (BookEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(author, that.author) && Objects.equals(title, that.title) && Objects.equals(isbn, that.isbn);
+
+        if (!Objects.equals(id, that.id)) return false;
+        if (!Objects.equals(author, that.author)) return false;
+        if (!Objects.equals(title, that.title)) return false;
+        return Objects.equals(isbn, that.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, author, title, isbn);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
+        return result;
     }
 
     @Override
