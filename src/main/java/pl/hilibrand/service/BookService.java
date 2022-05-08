@@ -31,7 +31,7 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public BookEntity createBook(Book book) {
+    public Book createBook(Book book) {
         bookRepository.findByIsbn(book.getIsbn())
                 .ifPresent(bookEntity -> {
                     var error = String.format(DUPLICATE_ERROR_MESSAGE, book.getIsbn());
@@ -40,7 +40,7 @@ public class BookService {
 
         var newBook = bookRepository.save(convertToEntity(book));
         logger.info("New book has been added: " + newBook);
-        return newBook;
+        return convertToDto(newBook);
     }
 
     private BookEntity convertToEntity(Book book) {

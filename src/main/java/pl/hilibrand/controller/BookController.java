@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.hilibrand.dto.Book;
-import pl.hilibrand.entity.BookEntity;
 import pl.hilibrand.service.BookService;
 
 import javax.validation.Valid;
@@ -27,7 +26,7 @@ public class BookController {
     }
 
     @PostMapping
-    private @ResponseBody ResponseEntity<BookEntity> addBook(@Valid @RequestBody Book book) {
+    private @ResponseBody ResponseEntity<Book> addBook(@Valid @RequestBody Book book) {
         return new ResponseEntity<>(bookService.createBook(book), HttpStatus.CREATED);
     }
 }
